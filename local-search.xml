@@ -4,6 +4,82 @@
   
   
   <entry>
+    <title>搬运文章合集</title>
+    <link href="/2022/02/08/banyun/"/>
+    <url>/2022/02/08/banyun/</url>
+    
+    <content type="html"><![CDATA[<p>一些文章</p><a id="more"></a><h2 id="5种应该避免的CSS写法"><a href="#5种应该避免的CSS写法" class="headerlink" title="5种应该避免的CSS写法"></a>5种应该避免的CSS写法</h2><p><a href="https://mp.weixin.qq.com/s/_TOimK_Ky4Qo2LTm64bzow">https://mp.weixin.qq.com/s/_TOimK_Ky4Qo2LTm64bzow</a></p><h2 id="学习vuecli背后的过程"><a href="#学习vuecli背后的过程" class="headerlink" title="学习vuecli背后的过程"></a>学习vuecli背后的过程</h2><p><a href="https://segmentfault.com/a/1190000039417455?utm_source=sf-similar-article">https://segmentfault.com/a/1190000039417455?utm_source=sf-similar-article</a></p><h2 id="console的用法"><a href="#console的用法" class="headerlink" title="console的用法"></a>console的用法</h2><p><a href="https://mp.weixin.qq.com/s/0shcbJWE00A1nCWT-MiHpg">https://mp.weixin.qq.com/s/0shcbJWE00A1nCWT-MiHpg</a></p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Share</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>分页器</title>
+    <link href="/2021/06/11/vueappmount/"/>
+    <url>/2021/06/11/vueappmount/</url>
+    
+    <content type="html"><![CDATA[<p>下面这种情况，Vue会渲染到哪个节点上</p><a id="more"></a><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">new</span> Vue(&#123;<br>    router,<br>    store,<br>    el: <span class="hljs-string">&#x27;#app&#x27;</span>,<br>    render: <span class="hljs-function"><span class="hljs-params">h</span> =&gt;</span> h(App)<br>&#125;).$mount(<span class="hljs-string">&#x27;#ggg&#x27;</span>)<br></code></pre></td></tr></table></figure><p>会挂在到el上，because<br><img src="/img/vuemount.png"></p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>vue</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Object.freeze</title>
+    <link href="/2021/04/14/object-freeze/"/>
+    <url>/2021/04/14/object-freeze/</url>
+    
+    <content type="html"><![CDATA[<p>在 Vue 组件初始化数据时，会递归遍历在 data 中定义的每一条数据，通过<code>Object.defineProperty</code>将数据改成响应式，这就意味着如果 data 中的数据量很大的话，在初始化时将会使用很长的时间去执行<code>Object.defineProperty</code>, 也就会带来性能问题，这个时候我们可以强制使数据变为非响应式，从而节省时间，看下这个例子：</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">v-for</span>=<span class="hljs-string">&quot;item in heavyData&quot;</span> <span class="hljs-attr">:key</span>=<span class="hljs-string">&quot;item.id&quot;</span>&gt;</span>&#123;&#123; item.name &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span><br></code></pre></td></tr></table></figure><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 一万条数据</span><br><span class="hljs-keyword">const</span> heavyData = <span class="hljs-built_in">Array</span>(<span class="hljs-number">10000</span>)<br>.fill(<span class="hljs-literal">null</span>)<br>.map(<span class="hljs-function">(<span class="hljs-params">_, idx</span>) =&gt;</span> (&#123; <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;test&#x27;</span>, <span class="hljs-attr">message</span>: <span class="hljs-string">&#x27;test&#x27;</span>, <span class="hljs-attr">id</span>: idx &#125;))<br> <br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;<br><span class="hljs-function"><span class="hljs-title">data</span>(<span class="hljs-params"></span>)</span> &#123;<br><span class="hljs-keyword">return</span> &#123;<br>heavyData: heavyData<br>&#125;<br>&#125;,<br><span class="hljs-function"><span class="hljs-title">beforeCreate</span>(<span class="hljs-params"></span>)</span> &#123;<br><span class="hljs-built_in">this</span>.start = <span class="hljs-built_in">Date</span>.now()<br>&#125;,<br><span class="hljs-function"><span class="hljs-title">created</span>(<span class="hljs-params"></span>)</span> &#123;<br><span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Date</span>.now() - <span class="hljs-built_in">this</span>.start)<br>&#125;<br>&#125;<br></code></pre></td></tr></table></figure><p>heavyData中有一万条数据，这里统计了下从<code>beforeCreate</code>到<code>created</code>经历的时间，对于这个例子而言，这个时间基本上就是初始化数据的时间。</p><p>这个时间一直在40-50ms，然后我们通过<code>Object.freeze()</code>方法，将<code>heavyData</code>变为非响应式的再试下：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-title">data</span>(<span class="hljs-params"></span>)</span> &#123;<br><span class="hljs-keyword">return</span> &#123;<br>heavyData: <span class="hljs-built_in">Object</span>.freeze(heavyData)<br>&#125;<br>&#125;<br></code></pre></td></tr></table></figure><p>改完之后再试下，初始化数据的时间变成了0-1ms，快了有40ms，这40ms都是递归遍历heavyData执行Object.defineProperty的时间。</p><p>那么，为什么<code>Object.freeze()</code>会有这样的效果呢？对某一对象使用<code>Object.freeze()</code>后，将不能向这个对象添加新的属性，不能删除已有属性，不能修改该对象已有属性的可枚举性、可配置性、可写性，以及不能修改已有属性的值。</p><p>而 Vue 在将数据改造成响应式之前有个判断：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">observe</span>(<span class="hljs-params">value, asRootData</span>) </span>&#123;<br><span class="hljs-comment">// ...省略其他逻辑</span><br><span class="hljs-keyword">if</span> (<br>shouldObserve &amp;&amp;<br>!isServerRendering() &amp;&amp;<br>(<span class="hljs-built_in">Array</span>.isArray(value) || isPlainObject(value)) &amp;&amp;<br><span class="hljs-built_in">Object</span>.isExtensible(value) &amp;&amp;<br>!value._isVue<br>) &#123;<br>ob = <span class="hljs-keyword">new</span> Observer(value)<br>&#125;<br><span class="hljs-comment">// ...省略其他逻辑</span><br>&#125;<br></code></pre></td></tr></table></figure><p>这个判断条件中有一个<code>Object.isExtensible(value)</code>，这个方法是判断一个对象是否是可扩展的，由于我们使用了<code>Object.freeze()</code>，这里肯定就返回了false，所以就跳过了下面的过程，自然就省了很多时间。</p><p>实际上，不止初始化数据时有影响，你可以用上面的例子统计下从created到mounted所用的时间，在我的电脑上不使用<code>Object.freeze()</code>时，这个时间是60-70ms，使用<code>Object.freeze()</code>后降到了40-50ms，这是因为在渲染函数中读取<code>heavyData</code>中的数据时，会执行到通过<code>Object.defineProperty</code>定义的getter方法，Vue 在这里做了一些收集依赖的处理，肯定就会占用一些时间，由于使用了<code>Object.freeze()</code>后的数据是非响应式的，没有了收集依赖的过程，自然也就节省了性能。</p><p>由于访问响应式数据会走到自定义 getter 中并收集依赖，所以平时使用时要避免频繁访问响应式数据，比如在遍历之前先将这个数据存在局部变量中，尤其是在计算属性、渲染函数中使用，关于这一点更具体的说明，你可以看黄奕老师的这篇文章：Local variables</p><p>但是这样做也不是没有任何问题的，这样会导致<code>heavyData</code>下的数据都不是响应式数据，你对这些数据使用computed、watch等都不会产生效果，不过通常来说这种大量的数据都是展示用的，如果你有特殊的需求，你可以只对这种数据的某一层使用<code>Object.freeze()</code>，同时配合使用上文中的延迟渲染、函数式组件等，可以极大提升性能。</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>vue</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Vue动态引用本地图片报错</title>
+    <link href="/2021/04/14/requireimg/"/>
+    <url>/2021/04/14/requireimg/</url>
+    
+    <content type="html"><![CDATA[<p>项目中需要动态引入图片，写了一个循环进行赋值，一开始写法如下<br>template:<br><code>&lt;img :src=”item.imgactive”/&gt;</code></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-built_in">this</span>.menus.push(&#123;<span class="hljs-string">&quot;component&quot;</span>:v.component,<br>     <span class="hljs-string">&#x27;i18nKey&#x27;</span>:v.i18nKey,<br>     <span class="hljs-string">&#x27;imgactive&#x27;</span>:<span class="hljs-built_in">require</span>(<span class="hljs-string">`@/assets/imgs/thirdmenu/<span class="hljs-subst">$&#123;v.component&#125;</span>active.png`</span>),<br>     &#125;);<br></code></pre></td></tr></table></figure><p>这样写完之后控制台报错，404，找不到图片，在网上搜了一下发现要加require</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-built_in">this</span>.menus.push(&#123;<span class="hljs-string">&quot;component&quot;</span>:v.component,<br>     <span class="hljs-string">&#x27;i18nKey&#x27;</span>:v.i18nKey,<br>     <span class="hljs-string">&#x27;imgactive&#x27;</span>:<span class="hljs-string">`@/assets/imgs/thirdmenu/<span class="hljs-subst">$&#123;v.component&#125;</span>active.png`</span>,<br>     &#125;);<br></code></pre></td></tr></table></figure><p>require 是 node 中的一个方法，作用是 “用于引入模块、 JSON、或本地文件”。 也就是说如果我们使用 require 来引入一个图片文件的话，那么 require 返回的就是用于引入的图片（npm 运行之后图片的编译路径）。 而如果使用字符串的话，那么则是一个 string 类型的固定字符串路径。<br>src 中引入的图片应该为图片的本身路径（相对路径或者绝对路径），而 vue 项目通过 webpack 的 devServer 运行之后，默认的 vue-cli 配置下，图片会被打包成 name.hash 的图片名，在这种情况下，如果我们使用固定的 字符串路径则无法找到该图片，所以需要使用 require 方法来返回 图片的编译路径。</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>vue</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>前端埋点与监控</title>
     <link href="/2021/03/26/%E5%89%8D%E7%AB%AF%E5%9F%8B%E7%82%B9%E4%B8%8E%E7%9B%91%E6%8E%A7/"/>
     <url>/2021/03/26/%E5%89%8D%E7%AB%AF%E5%9F%8B%E7%82%B9%E4%B8%8E%E7%9B%91%E6%8E%A7/</url>
