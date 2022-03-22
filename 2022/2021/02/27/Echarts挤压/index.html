@@ -1,0 +1,438 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favi.jpg">
+  <link rel="icon" type="image/png" href="/img/favi.jpg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="Austin">
+  <meta name="keywords" content="">
+  <title>Echarts挤压 - Austin&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Austin</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Echarts挤压">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-02-27 14:15" pubdate>
+        2021年2月27日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      143 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      1
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Echarts挤压</h1>
+            
+            <div class="markdown-body">
+              <p>工作中有时候会遇到ECharts挤压的问题，如下图所示</p>
+<p><img src="data:image/jpeg;base64,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" srcset="/img/loading.gif"></p>
+<p>虽然给ECharts图标加了自适应resize方法，但是只有窗口大小发生了改变，图表才会恢复正常，使用浏览器的元素选择器去查看图表的宽高，只有100px了，引起的原因应该是在渲染图表的时候没有获取到容器的宽高，解决的办法是将容器的宽高写成固定值，至于自适应的话，可以用JS动态判断窗口大小赋值宽高。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/js/">js</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">happy every day</p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/03/26/%E5%89%8D%E7%AB%AF%E5%9F%8B%E7%82%B9%E4%B8%8E%E7%9B%91%E6%8E%A7/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">前端埋点与监控</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/02/20/%E4%B8%A4%E6%A0%8F%E5%B8%83%E5%B1%80%E5%92%8C%E4%B8%89%E6%A0%8F%E5%B8%83%E5%B1%80/">
+                        <span class="hidden-mobile">两栏布局和三栏布局</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <i class="iconfont icon-love"></i> <a href="https://www.phantompopstar.com/" target="_blank" rel="nofollow noopener"><span>Austin</span></a> 
+  </div>
+  
+
+  
+  <!-- 备案信息 -->
+  <div class="beian">
+    <span>
+      <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+        京ICP备2021011226号
+      </a>
+    </span>
+    
+  </div>
+
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>
